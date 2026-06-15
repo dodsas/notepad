@@ -1,0 +1,18 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# 무료 플랜(free)으로만 구성되어 있습니다.
+services:
+  - type: web
+    name: notepad
+    runtime: node
+    plan: free # ← 무료 플랜 고정
+    region: singapore # Turso DB(ap-northeast-1)와 가까운 무료 리전
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/notebooks
+    envVars:
+      # Turso 접속 정보는 Render 대시보드에서 직접 입력하세요.
+      # (.env 파일은 절대 커밋하지 마세요 — .gitignore로 제외됨)
+      - key: TURSO_URL
+        sync: false
+      - key: TURSO_TOKEN
+        sync: false
